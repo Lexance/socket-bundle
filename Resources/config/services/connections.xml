@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--
+
+  This file is part of the lxSocketBundle.
+
+  (c) Victor J. C. Geyer <victorgeyer@ciscaja.com>
+
+-->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="lx_socket.connection.remote_connection.prototype" class="lx\Socket\Connection\RemoteSocketConnection" abstract="true">
+            <tag name="lx_socket.connection_prototype" type="remote_socket" />
+        </service>
+        <service id="lx_socket.connection.http_connection.prototype" class="lx\Socket\Connection\HttpSocketConnection" abstract="true">
+            <tag name="lx_socket.connection_prototype" type="http_socket" />
+        </service>
+        <service id="lx_socket.connection.https_connection.prototype" class="lx\Socket\Connection\HttpsSocketConnection" abstract="true">
+            <tag name="lx_socket.connection_prototype" type="https_socket" />
+        </service>
+    </services>
+</container>
