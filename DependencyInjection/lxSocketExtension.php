@@ -24,5 +24,6 @@ class lxSocketExtension extends Extension
         $loader->load('builder.xml');
         $loader->load('connections.xml');
         $loader->load('sockets.xml');
+        $loader->load('file.xml');
     }
 }

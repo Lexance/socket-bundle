@@ -14,4 +14,6 @@ class TagConfig
     const CONNECTION = 'lx_socket.connection';
     const SOCKET = 'lx_socket.socket';
     const BUILDER = 'lx_socket.socket_builder';
+    const FILE = 'lx_socket.file';
+    const FILE_PROTOTYPE = 'lx_socket.file_prototype';
 }
