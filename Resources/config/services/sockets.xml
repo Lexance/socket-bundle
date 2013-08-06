@@ -11,17 +11,24 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="lx_socket.socket.http_socket_file">lx\Socket\HttpSocket</parameter>
+        <parameter key="lx_socket.socket.https_socket_file">lx\Socket\HttpsSocket</parameter>
+        <parameter key="lx_socket.socket.local_socket_file">lx\Socket\LocalSocket</parameter>
+        <parameter key="lx_socket.socket.remote_socket_file">lx\Socket\RemoteSocket</parameter>
+    </parameters>
+
     <services>
-        <service id="lx_socket.http_socket" class="lx\Socket\HttpSocket" abstract="true">
+        <service id="lx_socket.http_socket" class="%lx_socket.socket.http_socket_file%" abstract="true">
             <tag name="lx_socket.socket" method="http_socket" />
         </service>
-        <service id="lx_socket.https_socket" class="lx\Socket\HttpsSocket" abstract="true">
+        <service id="lx_socket.https_socket" class="%lx_socket.socket.https_socket_file%" abstract="true">
             <tag name="lx_socket.socket" method="https_socket" />
         </service>
-        <service id="lx_socket.local_socket" class="lx\Socket\LocalSocket" abstract="true">
+        <service id="lx_socket.local_socket" class="%lx_socket.socket.local_socket_file%" abstract="true">
             <tag name="lx_socket.socket" method="local_socket" />
         </service>
-        <service id="lx_socket.remote_socket" class="lx\Socket\RemoteSocket" abstract="true">
+        <service id="lx_socket.remote_socket" class="%lx_socket.socket.remote_socket_file%" abstract="true">
             <tag name="lx_socket.socket" method="remote_socket" />
         </service>
     </services>

@@ -11,8 +11,12 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="lx_socket.builder.socket_builder">lx\Socket\Builder\SocketBuilder</parameter>
+    </parameters>
+
     <services>
-        <service id="lx_socket.builder.socket_builder" class="lx\Socket\Builder\SocketBuilder">
+        <service id="lx_socket.builder.socket_builder" class="%lx_socket.builder.socket_builder%">
             <tag name="lx_socket.socket_builder" />
         </service>
         <service id="socket_builder" alias="lx_socket.builder.socket_builder" />
