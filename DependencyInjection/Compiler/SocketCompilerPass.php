@@ -21,12 +21,9 @@ class SocketCompilerPass implements CompilerPassInterface
     {
         $builder_definitions = array();
         $tagged_builder_definitions = $container->findTaggedServiceIds(TagConfig::BUILDER);
-        foreach($builder_definitions as $service_id => &$attributes) {
-            foreach ($attributes as &$attribute) {
-                if(!isset($attribute['method']))
-                    continue;
-                $builder_definitions[] = $service_id;
-            }
+        foreach($tagged_builder_definitions as $service_id => &$attributes) {
+            foreach ($attributes as &$attribute)
+                $builder_definitions[] = $container->getDefinition($service_id);
         }
 
         $tagged_socket_definitions = $container->findTaggedServiceIds(TagConfig::SOCKET);
@@ -35,7 +32,8 @@ class SocketCompilerPass implements CompilerPassInterface
                 if(!isset($attribute['method']))
                     continue;
                 /** @var Definition $socket_definition */
-                $socket_definition = $container->get($service_id);
+                $socket_definition = $container->getDefinition($service_id);
+
                 foreach($builder_definitions as $builder_definition){
                     /** @var Definition $builder_definition */
                     $builder_definition->addMethodCall('addSocketClass', array($attribute['method'], $socket_definition->getClass()));
