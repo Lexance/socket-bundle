@@ -20,7 +20,7 @@ class SocketCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $builder_definitions = array();
-        $tagged_builder_definitions = $container->findTaggedServiceIds(TagConfig::BUILDER);
+        $tagged_builder_definitions = $container->findTaggedServiceIds(TagConfig::SOCKET_BUILDER);
         foreach($tagged_builder_definitions as $service_id => &$attributes) {
             foreach ($attributes as &$attribute)
                 $builder_definitions[] = $container->getDefinition($service_id);
